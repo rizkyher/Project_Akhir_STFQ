@@ -1,12 +1,12 @@
 import Login from './pages/Login'
-import { Register } from './pages/Register'
+import Register from './pages/Register'
 
 function App() {
 
   return (
     <div>
-      <Login />
-      {/* <Register /> */}
+      {/* <Login /> */}
+      <Register />
     </div>
   )
 }

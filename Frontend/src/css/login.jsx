@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledHref = styled.a`
-decoration : underline;
+text-decoration : underline;
 color : blue;
 cursor : pointer;
 

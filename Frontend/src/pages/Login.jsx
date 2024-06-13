@@ -16,8 +16,8 @@ const Login = () => {
                     <h2 className="text-3xl font-bold text-gray-700 text-center pb-20">FIQIH <span className="text-[#29ADB2]">KELUARGA</span></h2>
                     <form className="mt-8 space-y-6">
                         <div>
-                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
-                                Username
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">
+                                Email
                             </label>
                             <input
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
