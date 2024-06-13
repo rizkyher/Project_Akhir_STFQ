@@ -4,59 +4,54 @@ import React from "react";
 
 const Login = () => {
     return (
-        <div className="h-screen flex flex-col md:flex-row space-y-10 md:space-y-md:space-x-160  items-center my-2 mx-5 md:mx-0 md:my-0">
-            <div className="h-full bg-[#29ADB2] md:w-1/4 max-w-sm">
-                <img
-                    src="assets/images/login.png"
-                    alt="Sample image"
-                />
+        <div className="flex h-screen">
+            {/* Colored half */}
+            <div className="hidden lg:flex lg:w-1/2 bg-[#29ADB2] items-center justify-center">
+                <img src="assets/images/login.png" alt="Placeholder" className=" w-1/2 h-1/2" />
             </div>
 
-            <div className="md:w-1/4 max-w-sm">
-                <div className="text-center md:text-center">
-                    <label className="mr-1 text-3xl font-bold">FIQIH <span className="text-[#29ADB2]">KELUARGA</span></label>
-                </div>
-                {/* <div className="my-5 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
-
-                </div> */}
-                <input
-                    className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded"
-                    type="text"
-                    placeholder="Email Address"
-                />
-                <input
-                    className="text-sm w-full px-4 py-2 border border-solid border-gray-300 rounded mt-4"
-                    type="password"
-                    placeholder="Password"
-                />
-                <div className="mt-4 flex justify-between font-semibold text-sm">
-                    <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
-                        <input className="mr-1" type="checkbox" />
-                        <span>Remember Me</span>
-                    </label>
-                    <a
-                        className=" hover:text-blue-700 hover:underline hover:underline-offset-4"
-                        href="#"
-                    >
-                        Forgot Password?
-                    </a>
-                </div>
-                <div className="text-center md:text-center">
-                    <button
-                        className="mt-4 bg-blue-600 hover:bg-blue-700 px-10 py-2 text-white uppercase rounded text-xs tracking-wider"
-                        type="submit"
-                    >
-                        Login
-                    </button>
-                </div>
-                <div className="mt-4 font-semibold text-sm text-slate-500 text-center md:text-left">
-                    Don&apos;t have an account?{" "}
-                    <a
-                        className="text-red-600 hover:underline hover:underline-offset-4"
-                        href="#"
-                    >
-                        Register
-                    </a>
+            {/* Non-colored half (Login form) */}
+            <div className="flex w-full lg:w-1/2 items-center justify-center">
+                <div className="max-w-md w-full p-8">
+                    <h2 className="text-3xl font-bold text-gray-700 text-center">FIQIH <span className="text-[#29ADB2]">KELUARGA</span></h2>
+                    <form className="mt-8 space-y-6">
+                        <div>
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
+                                Username
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                id="username"
+                                type="text"
+                                placeholder="Username"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
+                                Password
+                            </label>
+                            <input
+                                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                                id="password"
+                                type="password"
+                                placeholder="**********"
+                            />
+                        </div>
+                        <div className="flex items-center justify-between">
+                            <button
+                                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                type="button"
+                            >
+                                Sign In
+                            </button>
+                            <a
+                                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+                                href="#"
+                            >
+                                Forgot Password?
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
