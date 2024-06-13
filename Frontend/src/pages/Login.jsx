@@ -5,14 +5,14 @@ import React from "react";
 const Login = () => {
     return (
         <div className="h-screen flex flex-col md:flex-row space-y-10 md:space-y-md:space-x-160  items-center my-2 mx-5 md:mx-0 md:my-0">
-            <div className="h-full bg-[#29ADB2]">
+            <div className="h-full bg-[#29ADB2] md:w-1/4 max-w-sm">
                 <img
                     src="assets/images/login.png"
                     alt="Sample image"
                 />
             </div>
 
-            <div className="md:w-1/3 max-w-sm">
+            <div className="md:w-1/4 max-w-sm">
                 <div className="text-center md:text-center">
                     <label className="mr-1 ">FIQIH <span className="text-[#29ADB2]">KELUARGA</span></label>
                 </div>
