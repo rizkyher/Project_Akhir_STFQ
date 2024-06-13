@@ -14,7 +14,7 @@ const Login = () => {
 
             <div className="md:w-1/4 max-w-sm">
                 <div className="text-center md:text-center">
-                    <label className="mr-1 ">FIQIH <span className="text-[#29ADB2]">KELUARGA</span></label>
+                    <label className="mr-1 text-3xl font-bold">FIQIH <span className="text-[#29ADB2]">KELUARGA</span></label>
                 </div>
                 {/* <div className="my-5 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300">
 
