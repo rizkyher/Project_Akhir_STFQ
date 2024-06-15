@@ -7,7 +7,7 @@ const Login = () => {
     return (
         <div className="flex h-screen">
             {/* Colored half */}
-            <div className="hidden lg:flex lg:w-1/2 bg-[#29ADB2] items-center justify-center pb-20">
+            <div className="hidden lg:flex lg:w-1/2 bg-[#29ADB2] items-center justify-center flex-col pb-20">
                 <img src="assets/images/login.png" alt="Placeholder" className=" w-90 h-80 " />
                 <p className="mt-4 font-bold text-3xl">Login</p>
             </div>
