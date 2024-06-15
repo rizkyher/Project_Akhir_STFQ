@@ -9,6 +9,7 @@ const Login = () => {
             {/* Colored half */}
             <div className="hidden lg:flex lg:w-1/2 bg-[#29ADB2] items-center justify-center pb-20">
                 <img src="assets/images/login.png" alt="Placeholder" className=" w-90 h-80 " />
+                <p className="mt-4 font-bold text-3xl">Login</p>
             </div>
             {/* Non-colored half (Login form) */}
             <div className="flex w-full lg:w-1/2 items-center justify-center">
