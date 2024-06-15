@@ -15,22 +15,22 @@ export const getUsers = async (req, res) => {
 };
 
 export const Register = async (req, res) => {
-    const { username, email, password, confPassword, userType } = req.body;
-    if (password !== confPassword) return res.status(400).json({ msg: "Password and Confirm Password do not match" });
+    const { Username, Email, Password, confPassword, userType } = req.body;
+    if (Password !== confPassword) return res.status(400).json({ msg: "Password and Confirm Password do not match" });
     const salt = await bcrypt.genSalt();
     const hashPassword = await bcrypt.hash(Password, salt);
     try {
         const user = await Users.findOne({
             where: {
-                email
+                Email
             }
         });
         if (user) return res.status(409).json({ msg: "Email already registered" });
 
         await Users.create({
-            username,
-            email,
-            password: hashPassword,
+            Username,
+            Email,
+            Password: hashPassword,
             UserType: userType
         });
         res.json({ msg: "Register Success" });
