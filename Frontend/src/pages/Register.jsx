@@ -130,7 +130,7 @@ const Register = () => {
                             </a> */}
                         </div>
                         <div className="text-center">
-                            Sudah punya akun? <StyledHref href="">Masuk!</StyledHref>
+                            Sudah punya akun? <StyledHref href="Login">Masuk!</StyledHref>
                         </div>
                     </form>
                 </div>

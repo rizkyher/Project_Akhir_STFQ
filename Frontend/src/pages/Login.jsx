@@ -85,7 +85,7 @@ const Login = () => {
                             </a> */}
                         </div>
                         <div className="text-center">
-                            Belum punya akun? <StyledHref>Daftar!</StyledHref>
+                            Belum punya akun? <StyledHref href="Register">Daftar!</StyledHref>
                         </div>
                     </form>
                 </div>
