@@ -7,14 +7,12 @@ import axios from "axios";
 
 const Register = () => {
     const [formData, setFormData] = useState({
-        username: '',
         email: '',
+        username: '',
         password: '',
-        confirmPassword: '',
+        confPassword: '',
     })
-
-    const [errors, setErrors] = useState({});
-    const [message, setMessage] = useState('');
+    const [msg, setMsg] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -24,35 +22,22 @@ const Register = () => {
         })
     }
 
-    const validasi = () => {
-        const errors = {}
-        if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            errors.email = 'Email is invalid';
-        }
-        if (formData.password.length < 6) {
-            errors.password = 'Password must be at least 6 characters';
-        }
-        return errors;
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationErrors = validasi();
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-        } else {
-            try {
-                const response = await axios.post(API_SQL + 'register', formData);
-                setMessage(response.data.message);
-            } catch (error) {
-                if (error.response && error.response.data.errors) {
-                    setErrors(error.response.data.errors);
-                } else {
-                    setMessage('An error occurred. Please try again.');
-                }
+        try {
+            await axios.post(API_SQL + 'register', {
+                Username: username,
+                Email: email,
+                Password: password,
+                confPassword: confPassword
+            })
+            alert('Register Success')
+        } catch (error) {
+            if (error.response) {
+                console.log(error.response.data)
             }
         }
-    };
+    }
     return (
         <div className="flex h-screen">
             {/* Colored half */}
@@ -65,7 +50,7 @@ const Register = () => {
                 <div className="max-w-md w-full p-8">
                     <h2 className="text-3xl font-bold text-gray-700 text-center pb-20">FIQIH <span className="text-[#29ADB2]">KELUARGA</span></h2>
                     <form className="space-y-3" onSubmit={handleSubmit}>
-                        {message && <p>{message}</p>}
+
                         <div>
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="email">
                                 Email
@@ -78,8 +63,9 @@ const Register = () => {
                                 value={formData.email}
                                 placeholder="Example@gmail.com"
                                 onChange={handleChange}
+
                             />
-                            {errors.email && <p>{errors.email}</p>}
+
                         </div>
                         <div>
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="username">
@@ -93,8 +79,9 @@ const Register = () => {
                                 value={formData.username}
                                 placeholder="Username"
                                 onChange={handleChange}
+
                             />
-                            {errors.username && <p>{errors.username}</p>}
+
                         </div>
                         <div>
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="password">
@@ -108,8 +95,9 @@ const Register = () => {
                                 value={formData.password}
                                 placeholder="**********"
                                 onChange={handleChange}
+
                             />
-                            {errors.password && <p>{errors.password}</p>}
+
                         </div>
                         <div>
                             <label className="block text-gray-700 text-sm font-bold mb-1" htmlFor="password">
@@ -119,11 +107,13 @@ const Register = () => {
                                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                                 id="confirmPassword"
                                 type="password"
-                                name="confirmPassword"
+                                name="confPassword"
+                                value={formData.confPassword}
                                 placeholder="**********"
                                 onChange={handleChange}
+
                             />
-                            {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+
                         </div>
                         <div className="flex items-center justify-center">
                             <button
