@@ -1,4 +1,5 @@
 import React from 'react'
+import { Header } from '../components/Header'
 
 
 export const Beranda = () => {
@@ -6,8 +7,7 @@ export const Beranda = () => {
     return (
         <div>
             {/* <!-- Header --> */}
-
-
+            <Header />
             {/* <!-- Hero Section --> */}
             <section className=" bg-gradient-to-b from-[#29ADB2] to-[#124A4C] text-white py-20">
                 <div className="container mx-auto px-6 text-center mt-20">
@@ -29,7 +29,7 @@ export const Beranda = () => {
                                 <img src="assets/images/ustadz/ustadz-adi-hidayat.jpg" alt="Hero Image" className="mx-auto mb-4 w-1/3 h-1/3 rounded-full" />
                                 <h3 className="text-xl font-bold mb-2 text-center">Ustadz Adi Hidayat</h3>
                                 <p className="text-gray-700 mb-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, ipsam. Omnis deleniti tempora numquam distinctio eius at sit ratione quasi.</p>
-                                <a href="#" className="bg-[#29ADB2] text-white px-20 py-2 rounded-3xl font-semibold hover:bg-[#124A4C]">Konsultasi</a>
+                                <a href="LiveChat" className="bg-[#29ADB2] text-white px-20 py-2 rounded-3xl font-semibold hover:bg-[#124A4C]">Konsultasi</a>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
