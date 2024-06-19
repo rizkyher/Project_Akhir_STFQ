@@ -2,7 +2,7 @@ import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
-const Users = db.define('Users', {
+const Users = db.define('users', {
     UserID: {
         type: DataTypes.INTEGER,
         autoIncrement: true,

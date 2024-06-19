@@ -29,7 +29,7 @@ export const Register = async (req, res) => {
 
         await Users.create({
             Username,
-            Email ,
+            Email,
             Password: hashPassword,
             UserType: userType
         });
