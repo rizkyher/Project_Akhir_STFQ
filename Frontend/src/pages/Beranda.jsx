@@ -33,17 +33,19 @@ export const Beranda = () => {
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
-                            <div className="bg-white rounded-lg shadow-lg p-6">
-                                <div className=" text-blue-500 text-3xl mb-4">⚡</div>
-                                <h3 className="text-xl font-bold mb-2">Fitur Unggulan 2</h3>
-                                <p className="text-gray-700">Deskripsi singkat mengenai fitur unggulan kedua.</p>
+                            <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+                                <img src="assets/images/ustadz/ustadz-adi-hidayat.jpg" alt="Hero Image" className="mx-auto mb-4 w-1/3 h-1/3 rounded-full" />
+                                <h3 className="text-xl font-bold mb-2 text-center">Ustadz Adi Hidayat</h3>
+                                <p className="text-gray-700 mb-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, ipsam. Omnis deleniti tempora numquam distinctio eius at sit ratione quasi.</p>
+                                <a href="LiveChat" className="bg-[#29ADB2] text-white px-20 py-2 rounded-3xl font-semibold hover:bg-[#124A4C]">Konsultasi</a>
                             </div>
                         </div>
                         <div className="w-full md:w-1/3 px-4 mb-8">
-                            <div className="bg-white rounded-lg shadow-lg p-6">
-                                <div className="text-blue-500 text-3xl mb-4">🚀</div>
-                                <h3 className="text-xl font-bold mb-2">Fitur Unggulan 3</h3>
-                                <p className="text-gray-700">Deskripsi singkat mengenai fitur unggulan ketiga.</p>
+                            <div className="bg-white rounded-lg shadow-lg p-6 text-center">
+                                <img src="assets/images/ustadz/ustadz-adi-hidayat.jpg" alt="Hero Image" className="mx-auto mb-4 w-1/3 h-1/3 rounded-full" />
+                                <h3 className="text-xl font-bold mb-2 text-center">Ustadz Adi Hidayat</h3>
+                                <p className="text-gray-700 mb-10">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iste, ipsam. Omnis deleniti tempora numquam distinctio eius at sit ratione quasi.</p>
+                                <a href="LiveChat" className="bg-[#29ADB2] text-white px-20 py-2 rounded-3xl font-semibold hover:bg-[#124A4C]">Konsultasi</a>
                             </div>
                         </div>
                     </div>
