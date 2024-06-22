@@ -1,54 +1,71 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { FaPaperPlane } from 'react-icons/fa';
+import { Header } from './Header';
 
-const LiveChat = () => {
+const Chat = () => {
     const [messages, setMessages] = useState([]);
-    const [newMessage, setNewMessage] = useState('');
+    const [input, setInput] = useState('');
+    const messagesEndRef = useRef(null);
 
-    // Effect untuk mensubscribe perubahan pada daftar pesan
-    useEffect(() => {
-        // Simulasikan daftar pesan yang telah ada
-        const initialMessages = [
-            { id: 1, text: 'Halo!', sender: 'John Doe' },
-            { id: 2, text: 'Hai!', sender: 'Jane Doe' },
-        ];
-        setMessages(initialMessages);
-        // Membersihkan interval saat komponen unmount
-    }, []);
-
-    // Handler untuk mengirim pesan baru
-    const handleSendMessage = () => {
-        if (newMessage.trim() !== '') {
-            const newMessageObj = {
-                id: Date.now(),
-                text: newMessage,
-                sender: 'Me',
-            };
-            setMessages(prevMessages => [...prevMessages, newMessageObj]);
-            setNewMessage('');
+    const handleSend = () => {
+        if (input.trim()) {
+            setMessages([...messages, { text: input, sender: 'user' }]);
+            setInput('');
+            // Simulate a response from another user or bot
+            setTimeout(() => {
+                setMessages((prevMessages) => [
+                    ...prevMessages,
+                    { text: 'This is a response', sender: 'bot' }
+                ]);
+            }, 1000);
         }
     };
 
+    const handleInputChange = (e) => {
+        setInput(e.target.value);
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSend();
+        }
+    };
+
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [messages]);
+
     return (
-        <div className="max-w-md mx-auto p-4 bg-white rounded-lg shadow-lg">
-            <div className="h-64 overflow-y-auto mb-4">
-                {messages.map(message => (
-                    <div key={message.id} className="mb-2">
-                        <strong>{message.sender}:</strong> {message.text}
+        <div className="flex flex-col h-screen bg-gray-100 pt-20">
+            <Header />
+            <div className="flex-1 p-4 overflow-y-auto">
+                {messages.map((message, index) => (
+                    <div key={index} className={`mb-4 flex ${message.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
+                        <div className={`p-2 rounded-lg ${message.sender === 'user' ? 'bg-blue-500 text-white text-center' : 'bg-gray-200 text-gray-800 text-center'}`}>
+                            {message.text}
+                        </div>
                     </div>
                 ))}
+                <div ref={messagesEndRef} />
             </div>
-            <div className="flex">
+            <div className="p-4 border-t border-gray-200 flex items-center">
                 <input
                     type="text"
-                    value={newMessage}
-                    onChange={(e) => setNewMessage(e.target.value)}
-                    placeholder="Tulis pesan..."
-                    className="flex-1 mr-2 p-2 border rounded-lg focus:outline-none"
+                    value={input}
+                    onChange={handleInputChange}
+                    onKeyPress={handleKeyPress}
+                    className="flex-1 px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                    placeholder="Type your message..."
                 />
-                <button onClick={handleSendMessage} className="bg-blue-500 text-white px-4 py-2 rounded-lg">Kirim</button>
+                <button
+                    onClick={handleSend}
+                    className="bg-blue-600 text-white px-4 py-2 rounded-r-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 flex items-center"
+                >
+                    <FaPaperPlane className="text-white" />
+                </button>
             </div>
         </div>
     );
 };
 
-export default LiveChat;
+export default Chat;
