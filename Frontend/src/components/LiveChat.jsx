@@ -15,7 +15,7 @@ const Chat = () => {
             setTimeout(() => {
                 setMessages((prevMessages) => [
                     ...prevMessages,
-                    { text: 'This is a response', sender: 'bot' }
+                    { text: 'Tunggu sebentar! Kami akan mencarikan ustadz untuk anda.', sender: 'bot', }
                 ]);
             }, 1000);
         }
