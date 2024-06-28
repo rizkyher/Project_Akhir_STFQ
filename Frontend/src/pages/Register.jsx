@@ -14,12 +14,7 @@ const Register = () => {
 
     const validate = () => {
         const errors = [];
-        if (!Username) errors.push('Username is required.');
-        if (!Email) errors.push('Email is required.');
-        if (!Password) errors.push('Password is required.');
-        if (!confPassword) errors.push('Confirm Password is required.');
-        if (!userType) errors.push('User Type is required.');
-        if (Password !== confPassword) errors.push('Passwords do not match.');
+        if (!Username && !Email && !Password && !confPassword) errors.push('Isi data dengan benar.');
         return errors;
     };
 
