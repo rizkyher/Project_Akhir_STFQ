@@ -49,7 +49,7 @@ export const Login = async (req, res) => {
         });
         if (!user) return res.status(404).json({ msg: "User not found" });
 
-        const match = await bcrypt.compare(password, user.PasswordHash);
+        const match = await bcrypt.compare(password, user.Password);
         if (!match) return res.status(400).json({ msg: "Wrong password" });
 
         const userId = user.UserID;
@@ -61,12 +61,12 @@ export const Login = async (req, res) => {
 
         await user.update({ Token: accessToken });
 
-        res.json({ accessToken });
+        res.json({ token: accessToken, userId });
     } catch (error) {
-        res.status(500).json({ msg: error.message });
+        console.error(error);
+        res.status(500).json({ msg: "Internal Server Error" });
     }
-};
-
+}
 
 export const Logout = async (req, res) => {
     const { email } = req.body;

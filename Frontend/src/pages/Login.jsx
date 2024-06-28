@@ -1,40 +1,82 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { StyledHref } from "../css/login";
-// import { AiOutlineTwitter } from "react-icons/ai";
-// import { BiLogoFacebook } from "react-icons/bi";
+import axios from "axios";
+import { API_SQL } from "../utils/constant";
 
 const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [error, setError] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [msg, setMsg] = useState('');
+    const navigate = useNavigate();
+
+    function setCookie(cookieName, cookieValue) {
+        document.cookie = `${cookieName}=${cookieValue};path=/`;
+    }
+
+    useEffect(() => {
+        const token = getCookie('token');
+        if (token) {
+            navigate('/');
+        }
+    }, [navigate]);
+
+    function getCookie(cookieName) {
+        const name = `${cookieName}=`;
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) === 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return '';
+    }
+
+    const Auth = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post(`${API_SQL}login`, { email, password });
+            setCookie('token', response.data.token);
+            navigate("/");
+        } catch (error) {
+            if (error.response) {
+                setMsg(error.response.data.msg);
+            }
+        }
+    };
 
     const validasi = () => {
-        const error = {}
+        const errors = {};
         if (!email) {
-            error.email = 'Email is required'
+            errors.email = 'Email is required';
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            errors.email = 'Email is not valid';
         }
         if (!password) {
-            error.password = 'Password is required'
-        } else if (!/\S+@\S+\.\S+/.test(email)) {
-            error.email = 'Email is not valid'
-        } return error
-    }
+            errors.password = 'Password is required';
+        }
+        return errors;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const error = validasi()
-        if (Object.keys(error).length === 0) {
-            console.log('Form submitted successfully');
+        const errors = validasi();
+        if (Object.keys(errors).length === 0) {
+            Auth(e);
         } else {
-            setError(error)
+            setMsg(errors);
         }
+    };
 
-    }
     return (
         <div className="flex h-screen">
             {/* Colored half */}
             <div className="hidden lg:flex lg:w-1/2 bg-[#29ADB2] items-center justify-center flex-col pb-20">
-                <img src="assets/images/login.png" alt="Placeholder" className=" w-90 h-80 " />
+                <img src="assets/images/login.png" alt="Placeholder" className="w-90 h-80" />
                 <p className="mt-4 font-bold text-3xl">Login</p>
             </div>
             {/* Non-colored half (Login form) */}
@@ -54,7 +96,7 @@ const Login = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                             />
-                            {error.email && <span className="error">{error.email}</span>}
+                            {msg.email && <span className="error text-red-600">{msg.email}</span>}
                         </div>
                         <div>
                             <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="password">
@@ -68,21 +110,16 @@ const Login = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            {error.password && <span className="error text-red-600">{error.password}</span>}
+                            {msg.password && <span className="error text-red-600">{msg.password}</span>}
                         </div>
+                        {msg && !msg.email && !msg.password && <span className="error text-red-600">{msg}</span>}
                         <div className="flex items-center justify-center">
                             <button
                                 className="bg-[#0766AD] hover:bg-blue-700 text-white font-bold py-2 px-20 rounded focus:outline-none focus:shadow-outline text-center"
-                                type="button"
+                                type="submit"
                             >
                                 Sign In
                             </button>
-                            {/* <a
-                                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                                href="#"
-                            >
-                                Forgot Password?
-                            </a> */}
                         </div>
                         <div className="text-center">
                             Belum punya akun? <StyledHref href="Register">Daftar!</StyledHref>
