@@ -4,37 +4,42 @@ import { useNavigate} from 'react-router-dom'
 import { API_SQL } from "../utils/constant";
 
 const Register = () => {
-    const navigate = useNavigate()
-
-    const [formData, setFormData] = useState({
-        username: '',
-        email: '',
-        password: '',
-        confPassword: '',
-        userType: ''
-    });
+    const navigate = useNavigate();
     const [msg, setMsg] = useState('');
+    const [Username, setUsername] = useState('');
+    const [Email, setEmail] = useState('');
+    const [Password, setPassword] = useState('');
+    const [confPassword, setConfirmPassword] = useState('');
+    const [userType, setUserType] = useState('');
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value
-        });
+    const validate = () => {
+        const errors = [];
+        if (!Username) errors.push('Username is required.');
+        if (!Email) errors.push('Email is required.');
+        if (!Password) errors.push('Password is required.');
+        if (!confPassword) errors.push('Confirm Password is required.');
+        if (!userType) errors.push('User Type is required.');
+        if (Password !== confPassword) errors.push('Passwords do not match.');
+        return errors;
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const errors = validate();
+        if (errors.length > 0) {
+            setMsg(errors.join(' '));
+            return;
+        }
         try {
             await axios.post(API_SQL + 'register', {
-                Username: formData.username,
-                Email: formData.email,
-                Password: formData.password,
-                confPassword: formData.confPassword,
-                userType: formData.userType
+                Username,
+                Email,
+                Password,
+                confPassword,
+                userType
             });
             alert('Register Success');
-            navigate("/login")
+            navigate("/login");
         } catch (error) {
             if (error.response) {
                 setMsg(error.response.data.msg);
@@ -59,9 +64,9 @@ const Register = () => {
                                 id="email"
                                 type="email"
                                 name="email"
-                                value={formData.email}
+                                value={Email}
                                 placeholder="Example@gmail.com"
-                                onChange={handleChange}
+                                onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
                         <div>
@@ -71,9 +76,9 @@ const Register = () => {
                                 id="username"
                                 type="text"
                                 name="username"
-                                value={formData.username}
+                                value={Username}
                                 placeholder="Username"
-                                onChange={handleChange}
+                                onChange={(e) => setUsername(e.target.value)}
                             />
                         </div>
                         <div>
@@ -83,9 +88,9 @@ const Register = () => {
                                 id="password"
                                 type="password"
                                 name="password"
-                                value={formData.password}
+                                value={Password}
                                 placeholder="**********"
-                                onChange={handleChange}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                         </div>
                         <div>
@@ -95,9 +100,9 @@ const Register = () => {
                                 id="confPassword"
                                 type="password"
                                 name="confPassword"
-                                value={formData.confPassword}
+                                value={confPassword}
                                 placeholder="**********"
-                                onChange={handleChange}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                             />
                         </div>
                         <div>
@@ -107,9 +112,9 @@ const Register = () => {
                                 id="userType"
                                 type="text"
                                 name="userType"
-                                value={formData.userType}
+                                value={userType}
                                 placeholder="User Type"
-                                onChange={handleChange}
+                                onChange={(e) => setUserType(e.target.value)}
                             />
                         </div>
                         <div className="flex items-center justify-center">
@@ -132,3 +137,18 @@ const Register = () => {
 };
 
 export default Register;
+                                // const [formData, setFormData] = useState({
+                                //     username: '',
+                                //     email: '',
+                                //     password: '',
+                                //     confPassword: '',
+                                //     userType: ''
+                                // });
+                            
+                                // const handleChange = (e) => {
+                                //     const { name, value } = e.target;
+                                //     setFormData({
+                                //         ...formData,
+                                //         [name]: value
+                                //     });
+                                // };
